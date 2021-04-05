@@ -21,8 +21,8 @@ const slotSchema = new Schema({
 const scheduleSchema = new Schema({ date: { type: Date }, slot: [slotSchema] });
 
 const doctorSchema = new Schema({
-  education: [eduSchema],
-  work_history: [whSchema],
+  education: String,
+  work_history: String,
   address: {
     type: String,
     required: true,
@@ -33,15 +33,15 @@ const doctorSchema = new Schema({
   },
   phone_number: {
     type: Number,
-    min: 10,
-    max: 10,
+    // min: 10,
+    // max: 10,
   },
   city: {
-    type: Number,
+    type: String,
     required: true,
   },
   schedule: [scheduleSchema],
-  image: {},
+  // image: {},
 });
 
 const Doctor = mongoose.model("doctor", doctorSchema);

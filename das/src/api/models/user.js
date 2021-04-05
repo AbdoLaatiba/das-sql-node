@@ -1,6 +1,5 @@
 const mongoose = require("mongoose");
 const { Schema } = mongoose;
-const Doctor = require("./doctor");
 const Patient = require("./patient");
 
 const userSchema = new Schema({
@@ -24,7 +23,7 @@ const userSchema = new Schema({
   },
   doctor_info: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: "Doctor",
+    ref: "Doc",
   },
   patient_info: {
     type: mongoose.Schema.Types.ObjectId,
@@ -36,6 +35,32 @@ const userSchema = new Schema({
   },
 });
 
+const doctorSchema = new Schema({
+  education: String,
+  work_history: String,
+  address: {
+    type: String,
+    required: true,
+  },
+  cost: {
+    type: Number,
+    required: true,
+  },
+  phone_number: {
+    type: Number,
+    // min: 10,
+    // max: 10,
+  },
+  city: {
+    type: String,
+    required: true,
+  },
+  // schedule: [scheduleSchema],
+  // image: {},
+});
+
+const Doc = mongoose.model("doc", doctorSchema);
 const User = mongoose.model("user", userSchema);
 
-module.exports = User;
+
+module.exports = {Doc, User}

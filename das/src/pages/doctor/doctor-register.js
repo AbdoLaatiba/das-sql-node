@@ -17,7 +17,7 @@ export default class Doctorregister extends React.Component {
       cost: "",
       specialty: "",
       education: "",
-      image: "",
+      image: null,
     };
   }
 
@@ -31,37 +31,38 @@ export default class Doctorregister extends React.Component {
 
   handleSubmit = async (e) => {
     e.preventDefault();
-    const formdata = new FormData();
-    const {
-      name,
-      email,
-      password,
-      address,
-      phone_number,
-      cost,
-      city,
-      specialty,
-      education,
-      image,
-    } = this.state;
+    // const formdata = new FormData();
+    // const {
+    //   name,
+    //   email,
+    //   password,
+    //   address,
+    //   phone_number,
+    //   cost,
+    //   city,
+    //   specialty,
+    //   education,
+    //   image,
+    // } = this.state;
 
-    formdata.append("name", name);
-    formdata.append("email", email);
-    formdata.append("password", password);
-    formdata.append("address", address);
-    formdata.append("phone_number", phone_number);
-    formdata.append("cost", cost);
-    formdata.append("city", city);
-    formdata.append("specialty", specialty);
-    formdata.append("education", education);
-    formdata.append("image", image);
+    // formdata.append("name", name);
+    // formdata.append("email", email);
+    // formdata.append("password", password);
+    // formdata.append("address", address);
+    // formdata.append("phone_number", phone_number);
+    // formdata.append("cost", cost);
+    // formdata.append("city", city);
+    // formdata.append("specialty", specialty);
+    // formdata.append("education", education);
+    // formdata.append("image", image);
 
     try {
-      const res = await axios.post("/doctors/register", formdata, {
+      const res = await axios.post("http://localhost:5000/doctors/create", this.state, {
         Headers: {
           "Content-Type": "multipart/form-dat",
         },
       });
+      console.log(res);
     } catch (err) {
       console.log(err);
     }
@@ -133,7 +134,7 @@ export default class Doctorregister extends React.Component {
               </div>
               <div className="form-input">
                 <label htmlFor="city">City</label>
-                <input type="text" name="city" id="city" placeholder="city" />
+                <input type="text" name="city" id="city" placeholder="city" onChange={this.onChange}/>
               </div>
             </div>
 
@@ -168,7 +169,7 @@ export default class Doctorregister extends React.Component {
                   type="file"
                   name="image"
                   id="image"
-                  onChange={this.onfilechange}
+                  onChange={(e) =>this.onfilechange}
                 />
               </div>
               {/* <div className="form-input">
