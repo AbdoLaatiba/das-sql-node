@@ -42,7 +42,7 @@ export default function Footer() {
         </ul>
       </div>
       <div className="footer-doctor">
-        <h3>For Doctorst</h3>
+        <h3>For Doctors</h3>
         <ul>
           <li>
             <i className="fa fa-angle-double-right"></i>

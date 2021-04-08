@@ -28,10 +28,22 @@ export default function Navbar() {
             </a>
             <ul className={dropdoc ? 'drop-down-list drop-active' : 'drop-down-list'}>
               <li>
-                <Link to="doc/register" className="nav-link" onClick={() => {setDropdoc(!dropdoc); setShown(false);}}>Register</Link>
+                <Link 
+                  to="/doc/register" 
+                  className="nav-link" 
+                  onClick={() => {setDropdoc(!dropdoc); setShown(false);}}
+                >
+                  Register
+                </Link>
               </li>
               <li>
-              <Link to="/signin" className="nav-link" onClick={() => {setDropdoc(!dropdoc); setShown(false);}}>Log in</Link>
+                <Link 
+                  to="/signin" 
+                  className="nav-link" 
+                  onClick={() => {setDropdoc(!dropdoc); setShown(false);}}
+                >
+                  Log in
+                </Link>
               </li>
               <li>
               <Link to="/doctor/dashboard" className="nav-link" onClick={() => {setDropdoc(!dropdoc); setShown(false);}}>Doctor dashboard</Link>
@@ -41,13 +53,16 @@ export default function Navbar() {
 
 
           <li>
-          <a  className="nav-link drop" onClick={() => {setDroppat(!droppat); setDropdoc(false);}}>
+          <a  className="nav-link drop" 
+              onClick={() => {setDroppat(!droppat); setDropdoc(false);}}
+              onBlur={() => {console.log('hey im out')}}
+          >
               Patient
               <i className="fa fa-chevron-down"></i>
             </a>
             <ul className={droppat ? 'drop-down-list drop-active' : 'drop-down-list'}>
               <li>
-                <Link to="doc/register" className="nav-link" onClick={() => {setDroppat(!droppat); setShown(false);}}>Register</Link>
+                <Link to="/patient/register" className="nav-link" onClick={() => {setDroppat(!droppat); setShown(false);}}>Register</Link>
               </li>
               <li>
               <Link to="/signin" className="nav-link" onClick={() => {setDroppat(!droppat); setShown(false);}}>Log in</Link>
@@ -56,7 +71,7 @@ export default function Navbar() {
               <Link to="/doctor/dashboard" className="nav-link" onClick={() => {setDroppat(!droppat); setShown(false);}}>Patient dashboard</Link>
               </li>
             </ul>
-          </li>
+          </li> 
           <li>
             <a href="" className="nav-link">
               About us

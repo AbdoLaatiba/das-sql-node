@@ -1,5 +1,6 @@
 import React from "react";
 import doctor from "../assets/doctor.jpg";
+import {Link} from "react-router-dom";
 
 export default function Doctorcard() {
   return (
@@ -26,7 +27,13 @@ export default function Doctorcard() {
       </div>
 
       <div className="profile-buttons">
-        <button>show profile</button>
+        <Link 
+          to="/doc/profile"
+        >
+          <button>
+                  Register
+          </button>
+        </Link>
       </div>
     </div>
   );

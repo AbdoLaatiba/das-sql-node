@@ -19,7 +19,9 @@ export default function DisplayCard() {
       </div>
       <div className="appointment-section">
         <form action="">
-          <input type="date" name="" id="" />
+          <input className="form-item" type="date" name="" id="" 
+            onFocus={(e)=>{e.target.style.outline="none"}}
+          />
         </form>
         <div className="appontment-slots">
           <div className="slot">
