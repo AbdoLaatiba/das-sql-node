@@ -189,6 +189,9 @@ $mobile_size: 670px;
   @media screen and (max-width: $mobile_size) {
     .profile-card{
       flex-direction:column;
+      .doctor-profile-img{
+        width:80%;
+      }
     }
   }
   .profile-card{
