@@ -16,10 +16,10 @@ function Profile(){
         <div className="doctor-profile">
           <div className="profile-card">
             <div className="doctor-profile-img">
-              <img  src={doctor} alt="" />
+              <img  src={doctor} alt="doctor image" />
             </div>
             <div className="content-container">
-              <h1>Doctor name</h1>
+              <h2>Doctor name</h2>
               <div className="buttons">
                 <button onClick={()=>{hideContent(); setAbout(true)}}>About</button>
                 <button onClick={()=>{hideContent(); setSchedule(true)}}>Schedule</button>
@@ -27,7 +27,7 @@ function Profile(){
               </div>
               <div className="content">
                 <div className={about?"about active":"about"}>
-                  <h2>Education</h2>
+                  <h3>Education</h3>
                   <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime mollitia, molestiae quas vel sint commodi repudiandae consequuntur voluptatum laborum
 numquam blanditiis harum quisquam eius sed odit fugiat iusto fuga praesentium
 optio, eaque rerum! Provident similique accusantium nemo autem.</p>

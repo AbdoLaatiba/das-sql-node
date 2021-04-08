@@ -78,7 +78,9 @@ export default function Navbar() {
             </a>
           </li>
         </ul>
-        <div className="icon" onClick={() => {setShown(!shown); setDropdoc(false); setDroppat(false);}}>
+        <div className="icon" 
+          onClick={() => {setShown(!shown); setDropdoc(false); setDroppat(false);}}
+          >
           <i className={shown ? "fa fa-times" : "fa fa-bars"}></i>
         </div>
       </nav>
