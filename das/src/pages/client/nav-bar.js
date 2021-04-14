@@ -64,7 +64,7 @@ export default function Navbar() {
               </li>
               <li>
                 <Link
-                  to={`${url}doctor/dashboard`}
+                  to={`${url}doctor/`}
                   className="nav-link"
                   onClick={() => {
                     setDropdoc(!dropdoc);
