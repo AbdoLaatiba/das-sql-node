@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import "./doctor.scss";
+import "./doctor-register.scss";
 
 const axios = require("axios");
 
@@ -17,7 +18,7 @@ export default class Doctorregister extends React.Component {
       cost: "",
       specialty: "",
       education: "",
-      image: null,
+      educations: [],
     };
   }
 
@@ -25,47 +26,55 @@ export default class Doctorregister extends React.Component {
     const { name, value } = e.target;
     this.setState({ [name]: value });
   };
-  onfilechange = (e) => {
-    this.setState({ image: e.target.files[0] });
+  resetState = () => {
+    this.setState({
+      name: "",
+      email: "",
+      password: "",
+      address: "",
+      phone_number: "",
+      city: "",
+      cost: "",
+      specialty: "",
+      education: "",
+      educations: [],
+    });
   };
 
   handleSubmit = async (e) => {
     e.preventDefault();
-    // const formdata = new FormData();
-    // const {
-    //   name,
-    //   email,
-    //   password,
-    //   address,
-    //   phone_number,
-    //   cost,
-    //   city,
-    //   specialty,
-    //   education,
-    //   image,
-    // } = this.state;
+    const {
+      name,
+      email,
+      password,
+      address,
+      phone_number,
+      city,
+      cost,
+      educations,
+      specialty,
+    } = this.state;
+    const doctor = {
+      name: name,
+      email: email,
+      password: password,
+      address: address,
+      city: city,
+      cost: cost,
+      phone_number: phone_number,
+      specialty: specialty,
+      education: educations,
+    };
 
-    // formdata.append("name", name);
-    // formdata.append("email", email);
-    // formdata.append("password", password);
-    // formdata.append("address", address);
-    // formdata.append("phone_number", phone_number);
-    // formdata.append("cost", cost);
-    // formdata.append("city", city);
-    // formdata.append("specialty", specialty);
-    // formdata.append("education", education);
-    // formdata.append("image", image);
+    axios({
+      method: "post",
+      url: "http://localhost:4000/api/doctors/new",
+      data: doctor,
+    })
+      .then((res) => console.log(res))
+      .catch((err) => console.error(err));
 
-    try {
-      const res = await axios.post("http://localhost:5000/doctors/create", this.state, {
-        Headers: {
-          "Content-Type": "multipart/form-dat",
-        },
-      });
-      console.log(res);
-    } catch (err) {
-      console.log(err);
-    }
+    this.resetState();
   };
 
   render() {
@@ -84,6 +93,7 @@ export default class Doctorregister extends React.Component {
                   id="name"
                   placeholder="full name "
                   onChange={this.onChange}
+                  value={this.state.name}
                 />
               </div>
               <div className="form-input">
@@ -94,6 +104,7 @@ export default class Doctorregister extends React.Component {
                   id="email"
                   placeholder="email"
                   onChange={this.onChange}
+                  value={this.state.email}
                 />
               </div>
             </div>
@@ -107,6 +118,7 @@ export default class Doctorregister extends React.Component {
                   id="address"
                   placeholder="address "
                   onChange={this.onChange}
+                  value={this.state.address}
                 />
               </div>
               <div className="form-input">
@@ -117,6 +129,7 @@ export default class Doctorregister extends React.Component {
                   id="password"
                   placeholder="password"
                   onChange={this.onChange}
+                  value={this.state.password}
                 />
               </div>
             </div>
@@ -130,11 +143,19 @@ export default class Doctorregister extends React.Component {
                   id="phone_number"
                   placeholder="phone_number "
                   onChange={this.onChange}
+                  value={this.state.phone_number}
                 />
               </div>
               <div className="form-input">
                 <label htmlFor="city">City</label>
-                <input type="text" name="city" id="city" placeholder="city" onChange={this.onChange}/>
+                <input
+                  type="text"
+                  name="city"
+                  id="city"
+                  placeholder="city"
+                  onChange={this.onChange}
+                  value={this.state.city}
+                />
               </div>
             </div>
 
@@ -147,6 +168,7 @@ export default class Doctorregister extends React.Component {
                   id="specialty"
                   placeholder="specialty"
                   onChange={this.onChange}
+                  value={this.state.specialty}
                 />
               </div>
               <div className="form-input">
@@ -158,12 +180,13 @@ export default class Doctorregister extends React.Component {
                   placeholder="cost"
                   step="0.1"
                   onChange={this.onChange}
+                  value={this.state.cost}
                 />
               </div>
             </div>
 
             <div className="form-group">
-              <div className="form-input">
+              {/* <div className="form-input">
                 <label htmlFor="image">Image</label>
                 <input
                   type="file"
@@ -171,23 +194,45 @@ export default class Doctorregister extends React.Component {
                   id="image"
                   onChange={(e) =>this.onfilechange}
                 />
-              </div>
+              </div> */}
               {/* <div className="form-input">
               <label htmlFor="email">Email</label>
               <input type="email" name="email" id="email" placeholder="email" />
             </div> */}
               <div className="form-input">
                 <label htmlFor="education">Education</label>
-                <input
-                  type="text"
-                  name="education"
-                  id="education"
-                  placeholder="education"
-                  onChange={this.onChange}
-                />
+                <div className="edu">
+                  <input
+                    type="text"
+                    name="education"
+                    id="education"
+                    placeholder="education"
+                    onChange={this.onChange}
+                    value={this.state.education}
+                  />
+                  <i
+                    className="fa fa-plus-circle"
+                    onClick={() =>
+                      this.setState({
+                        educations: this.state.educations.concat([
+                          this.state.education,
+                        ]),
+                        education: "",
+                      })
+                    }
+                  ></i>
+                </div>
               </div>
             </div>
-
+            <div className="datalist">
+              <ul>
+                {this.state.educations.length ? (
+                  this.state.educations.map((edu) => <li>{edu}</li>)
+                ) : (
+                  <li>No educations</li>
+                )}
+              </ul>
+            </div>
             <div className="button">
               <input type="submit" value="Register" />
             </div>

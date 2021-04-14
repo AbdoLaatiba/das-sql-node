@@ -1,12 +1,53 @@
-import React from "react";
+import React, { useState } from "react";
 import "../doctor/doctor.scss";
 
+const axios = require("axios");
+
 export default function Patientregister() {
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [address, setAddress] = useState("");
+  const [city, setCity] = useState("");
+  const [phone_number, setPhone_number] = useState("");
+
+  const resetState = () => {
+    setName("");
+    setEmail("");
+    setAddress("");
+    setPassword("");
+    setCity("");
+    setPhone_number("");
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    const patient = {
+      name,
+      email,
+      password,
+      address,
+      city,
+      phone_number,
+    };
+
+    axios({
+      method: "post",
+      url: "http://localhost:4000/api/patients/new",
+      data: patient,
+    })
+      .then((res) => console.log(res))
+      .catch((err) => console.error(err));
+
+    resetState();
+  };
+
   return (
     <div>
       {/* Patient Form */}
       <div className="register">
-        <form action="">
+        <form onSubmit={handleSubmit}>
           <h1>Register</h1>
           <div className="form-group">
             <div className="form-input">
@@ -16,11 +57,20 @@ export default function Patientregister() {
                 name="name"
                 id="name"
                 placeholder="full name "
+                value={name}
+                onChange={(e) => setName(e.target.value)}
               />
             </div>
             <div className="form-input">
               <label htmlFor="email">Email</label>
-              <input type="email" name="email" id="email" placeholder="email" />
+              <input
+                type="email"
+                name="email"
+                id="email"
+                placeholder="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+              />
             </div>
           </div>
 
@@ -32,6 +82,8 @@ export default function Patientregister() {
                 name="password"
                 id="password"
                 placeholder="password "
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
               />
             </div>
             <div className="form-input">
@@ -41,6 +93,8 @@ export default function Patientregister() {
                 name="address"
                 id="address"
                 placeholder="address"
+                value={address}
+                onChange={(e) => setAddress(e.target.value)}
               />
             </div>
           </div>
@@ -53,6 +107,8 @@ export default function Patientregister() {
                 name="city"
                 id="city"
                 placeholder="full name "
+                value={city}
+                onChange={(e) => setCity(e.target.value)}
               />
             </div>
             <div className="form-input">
@@ -62,6 +118,8 @@ export default function Patientregister() {
                 name="phone_number"
                 id="phone_number"
                 placeholder="phone_number"
+                value={phone_number}
+                onChange={(e) => setPhone_number(e.target.value)}
               />
             </div>
           </div>

@@ -1,9 +1,10 @@
 import React, { useState } from "react";
 import "../../styles.scss";
 import logo from "../../assets/health.svg";
-import { Link } from "react-router-dom";
+import { Link, useRouteMatch } from "react-router-dom";
 
 export default function Navbar() {
+  const { path, url } = useRouteMatch();
   const [shown, setShown] = useState(false);
   const [dropdoc, setDropdoc] = useState(false);
   const [droppat, setDroppat] = useState(false);
@@ -22,65 +23,131 @@ export default function Navbar() {
             </a>
           </li>
           <li>
-          <a  className="nav-link drop" onClick={() => {setDropdoc(!dropdoc); setDroppat(false);}}>
+            <a
+              className="nav-link drop"
+              onClick={() => {
+                setDropdoc(!dropdoc);
+                setDroppat(false);
+              }}
+            >
               doctor
               <i className="fa fa-chevron-down"></i>
             </a>
-            <ul className={dropdoc ? 'drop-down-list drop-active' : 'drop-down-list'}>
+            <ul
+              className={
+                dropdoc ? "drop-down-list drop-active" : "drop-down-list"
+              }
+            >
               <li>
-                <Link 
-                  to="/doc/register" 
-                  className="nav-link" 
-                  onClick={() => {setDropdoc(!dropdoc); setShown(false);}}
+                <Link
+                  to={`${url}doc/register`}
+                  className="nav-link"
+                  onClick={() => {
+                    setDropdoc(!dropdoc);
+                    setShown(false);
+                  }}
                 >
                   Register
                 </Link>
               </li>
               <li>
-                <Link 
-                  to="/signin" 
-                  className="nav-link" 
-                  onClick={() => {setDropdoc(!dropdoc); setShown(false);}}
+                <Link
+                  to={`${url}signin`}
+                  className="nav-link"
+                  onClick={() => {
+                    setDropdoc(!dropdoc);
+                    setShown(false);
+                  }}
                 >
                   Log in
                 </Link>
               </li>
               <li>
-              <Link to="/doctor/dashboard" className="nav-link" onClick={() => {setDropdoc(!dropdoc); setShown(false);}}>Doctor dashboard</Link>
+                <Link
+                  to={`${url}doctor/dashboard`}
+                  className="nav-link"
+                  onClick={() => {
+                    setDropdoc(!dropdoc);
+                    setShown(false);
+                  }}
+                >
+                  Doctor dashboard
+                </Link>
               </li>
             </ul>
           </li>
 
-
           <li>
-          <a  className="nav-link drop" 
-              onClick={() => {setDroppat(!droppat); setDropdoc(false);}}
-              onBlur={() => {console.log('hey im out')}}
-          >
+            <a
+              className="nav-link drop"
+              onClick={() => {
+                setDroppat(!droppat);
+                setDropdoc(false);
+              }}
+              onBlur={() => {
+                console.log("hey im out");
+              }}
+            >
               Patient
               <i className="fa fa-chevron-down"></i>
             </a>
-            <ul className={droppat ? 'drop-down-list drop-active' : 'drop-down-list'}>
+            <ul
+              className={
+                droppat ? "drop-down-list drop-active" : "drop-down-list"
+              }
+            >
               <li>
-                <Link to="/patient/register" className="nav-link" onClick={() => {setDroppat(!droppat); setShown(false);}}>Register</Link>
+                <Link
+                  to={`${url}patient/register`}
+                  className="nav-link"
+                  onClick={() => {
+                    setDroppat(!droppat);
+                    setShown(false);
+                  }}
+                >
+                  Register
+                </Link>
               </li>
               <li>
-              <Link to="/signin" className="nav-link" onClick={() => {setDroppat(!droppat); setShown(false);}}>Log in</Link>
+                <Link
+                  to={`${url}signin`}
+                  className="nav-link"
+                  onClick={() => {
+                    setDroppat(!droppat);
+                    setShown(false);
+                  }}
+                >
+                  Log in
+                </Link>
               </li>
               <li>
-              <Link to="/doctor/dashboard" className="nav-link" onClick={() => {setDroppat(!droppat); setShown(false);}}>Patient dashboard</Link>
+                <Link
+                  to={`${url}patient/dashboard`}
+                  className="nav-link"
+                  onClick={() => {
+                    setDroppat(!droppat);
+                    setShown(false);
+                  }}
+                >
+                  Patient dashboard
+                </Link>
               </li>
             </ul>
-          </li> 
+          </li>
           <li>
             <a href="" className="nav-link">
               About us
             </a>
           </li>
         </ul>
-        <div className="icon" 
-          onClick={() => {setShown(!shown); setDropdoc(false); setDroppat(false);}}
-          >
+        <div
+          className="icon"
+          onClick={() => {
+            setShown(!shown);
+            setDropdoc(false);
+            setDroppat(false);
+          }}
+        >
           <i className={shown ? "fa fa-times" : "fa fa-bars"}></i>
         </div>
       </nav>

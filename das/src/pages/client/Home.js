@@ -8,6 +8,7 @@ import Doctorcard from "../../components/doctor-card";
 import Signin from "./sign-in";
 import Patientregister from "../patient/patient-register";
 import Profile from "../doctor/profile";
+import Doctorprofile from "../doctor/doctor-profile";
 
 function Home() {
   let { path, url } = useRouteMatch();

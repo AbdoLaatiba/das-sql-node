@@ -1,6 +1,7 @@
 $primary_color: #026c71;
 $secondary_color: #e0783e;
 $third_color: #e2e6e7;
+$white: #fff;
 $bg_color: #4d44441a;
 
 $mobile_size: 850px;
@@ -22,36 +23,33 @@ $mobile_size: 850px;
       margin: 0%;
       padding-top: 0.5rem;
 
-      li{
-        .drop{
+      li {
+        .drop {
           width: 130px;
-          i{
+          i {
             font-size: 1.3rem;
             margin-left: 1rem;
           }
-          
-      }
-      .drop-down-list{
-        display: none;
-        list-style: none;
-        width: 130px;
-        background-color: $primary_color;
-        padding: 0;
-        margin: 0;
-        position: absolute;
-        z-index: 33;
-        li{
-           cursor: pointer;
-          border-bottom: 1px solid $third_color;
+        }
+        .drop-down-list {
+          display: none;
+          list-style: none;
+          width: 130px;
+          background-color: $primary_color;
+          padding: 0;
+          margin: 0;
+          position: absolute;
+          z-index: 33;
+          li {
+            cursor: pointer;
+            border-bottom: 1px solid $third_color;
+          }
+        }
+        .drop-active {
+          display: block;
+          z-index: 33;
         }
       }
-      .drop-active{
-        display: block;
-        z-index: 33;
-      }
-
-
-        }
 
       .nav-link {
         display: inline-block;
@@ -59,7 +57,7 @@ $mobile_size: 850px;
         padding: 1rem;
         color: white;
         font-size: 1rem;
-         cursor: pointer; 
+        cursor: pointer;
       }
     }
     .fa {
@@ -92,23 +90,23 @@ $mobile_size: 850px;
 
         li {
           width: 100%;
-         
-          .drop{
+
+          .drop {
             width: 100%;
           }
-        
-        .drop-down-list{
-          width: 100%;
-          background-color: $third_color;
-          position: relative;
-          
-          li{
-            a{
-              color: black;
+
+          .drop-down-list {
+            width: 100%;
+            background-color: $third_color;
+            position: relative;
+
+            li {
+              a {
+                color: black;
+              }
             }
           }
         }
-      }
 
         .nav-link {
           padding: 1.5rem;
@@ -135,7 +133,7 @@ $mobile_size: 850px;
   justify-content: center;
   flex-direction: column;
   align-items: center;
-  //   background-color: $third_color;
+  background-color: $white;
 
   span {
     font-size: 2rem;
@@ -169,14 +167,15 @@ $mobile_size: 850px;
         border: 1px solid $secondary_color;
         background-color: transparent;
         color: $primary_color;
+        cursor: pointer;
 
         &:focus {
           outline: none;
         }
       }
-      input[type="date"]{
-        &:focus{
-          outline:none;
+      input[type="date"] {
+        &:focus {
+          outline: none;
         }
       }
     }
@@ -295,7 +294,7 @@ $mobile_size: 850px;
           }
         }
       }
-      .profile-link{
+      .profile-link {
         text-decoration: none;
       }
     }
@@ -557,7 +556,5 @@ $mobile_size: 850px;
     }
   }
 }
-
-
 
 //footer end
